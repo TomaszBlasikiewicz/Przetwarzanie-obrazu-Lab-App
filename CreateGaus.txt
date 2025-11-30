@@ -1,0 +1,25 @@
+ private static double[,] CreateGaussianKernel(int length, out double kernelSum)
+ {
+     double[,] kernel = new double[length, length];
+     double sigma = length / 2.0;
+     double mean = length / 2.0;
+     kernelSum = 0.0;
+     for (int y = 0; y < length; y++)
+     {
+         for (int x = 0; x < length; x++)
+         {
+             kernel[y, x] = Math.Exp(-0.5 * (Math.Pow((x - mean) / sigma, 2.0) + Math.Pow((y - mean) / sigma, 2.0))) / (2 * Math.PI * sigma * sigma);
+             kernelSum += kernel[y, x];
+         }
+     }
+     return kernel;
+ }
+
+        static int[,] GausianBlurKernel = new int[5, 5]
+        {
+           { 1 , 4 , 7 , 4 , 1 },
+           { 4 , 16 , 26 , 16 , 4 },
+            { 7 , 26 , 41 , 26 , 7 },
+            { 4 , 16 , 26 , 16 , 4 },
+            { 1 , 4 , 7 , 4 , 1 }
+        };
